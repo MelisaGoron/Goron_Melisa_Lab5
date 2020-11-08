@@ -864,39 +864,49 @@ namespace Goron_Melisa_Lab5.PhoneNumbersDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("Id", "Id");
             tableMapping.ColumnMappings.Add("Phonenum", "Phonenum");
             tableMapping.ColumnMappings.Add("Subscriber", "Subscriber");
+            tableMapping.ColumnMappings.Add("Contract_value", "Contract_value");
+            tableMapping.ColumnMappings.Add("Contract_date", "Contract_date");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[PhoneNumbers] WHERE (([Id] = @Original_Id) AND ((@IsNull_Phone" +
-                "num = 1 AND [Phonenum] IS NULL) OR ([Phonenum] = @Original_Phonenum)) AND ((@IsN" +
-                "ull_Subscriber = 1 AND [Subscriber] IS NULL) OR ([Subscriber] = @Original_Subscr" +
-                "iber)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[PhoneNumbers] WHERE (([Id] = @Original_Id) AND ((@IsNull_Phonenum = 1 AND [Phonenum] IS NULL) OR ([Phonenum] = @Original_Phonenum)) AND ((@IsNull_Subscriber = 1 AND [Subscriber] IS NULL) OR ([Subscriber] = @Original_Subscriber)) AND ((@IsNull_Contract_value = 1 AND [Contract_value] IS NULL) OR ([Contract_value] = @Original_Contract_value)) AND ((@IsNull_Contract_date = 1 AND [Contract_date] IS NULL) OR ([Contract_date] = @Original_Contract_date)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Phonenum", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Phonenum", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Phonenum", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Phonenum", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Subscriber", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Subscriber", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Subscriber", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Subscriber", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Contract_value", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Contract_value", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Contract_value", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Contract_value", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Contract_date", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Contract_date", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Contract_date", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Contract_date", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[PhoneNumbers] ([Phonenum], [Subscriber]) VALUES (@Phonenum, @S" +
-                "ubscriber);\r\nSELECT Id, Phonenum, Subscriber FROM PhoneNumbers WHERE (Id = SCOPE" +
-                "_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[PhoneNumbers] ([Phonenum], [Subscriber], [Contract_value], [Contract_date]) VALUES (@Phonenum, @Subscriber, @Contract_value, @Contract_date);
+SELECT Id, Phonenum, Subscriber, Contract_value, Contract_date FROM PhoneNumbers WHERE (Id = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Phonenum", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Phonenum", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Subscriber", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Subscriber", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Contract_value", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Contract_value", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Contract_date", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Contract_date", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[PhoneNumbers] SET [Phonenum] = @Phonenum, [Subscriber] = @Subscriber WHERE (([Id] = @Original_Id) AND ((@IsNull_Phonenum = 1 AND [Phonenum] IS NULL) OR ([Phonenum] = @Original_Phonenum)) AND ((@IsNull_Subscriber = 1 AND [Subscriber] IS NULL) OR ([Subscriber] = @Original_Subscriber)));
-SELECT Id, Phonenum, Subscriber FROM PhoneNumbers WHERE (Id = @Id)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[PhoneNumbers] SET [Phonenum] = @Phonenum, [Subscriber] = @Subscriber, [Contract_value] = @Contract_value, [Contract_date] = @Contract_date WHERE (([Id] = @Original_Id) AND ((@IsNull_Phonenum = 1 AND [Phonenum] IS NULL) OR ([Phonenum] = @Original_Phonenum)) AND ((@IsNull_Subscriber = 1 AND [Subscriber] IS NULL) OR ([Subscriber] = @Original_Subscriber)) AND ((@IsNull_Contract_value = 1 AND [Contract_value] IS NULL) OR ([Contract_value] = @Original_Contract_value)) AND ((@IsNull_Contract_date = 1 AND [Contract_date] IS NULL) OR ([Contract_date] = @Original_Contract_date)));
+SELECT Id, Phonenum, Subscriber, Contract_value, Contract_date FROM PhoneNumbers WHERE (Id = @Id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Phonenum", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Phonenum", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Subscriber", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Subscriber", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Contract_value", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Contract_value", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Contract_date", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Contract_date", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Phonenum", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Phonenum", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Phonenum", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Phonenum", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Subscriber", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Subscriber", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Subscriber", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Subscriber", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Contract_value", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Contract_value", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Contract_value", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Contract_value", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Contract_date", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Contract_date", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Contract_date", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Contract_date", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -914,7 +924,8 @@ SELECT Id, Phonenum, Subscriber FROM PhoneNumbers WHERE (Id = @Id)";
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT Id, Phonenum, Subscriber FROM dbo.PhoneNumbers";
+            this._commandCollection[0].CommandText = "SELECT Id, Phonenum, Subscriber, Contract_value, Contract_date FROM dbo.PhoneNumb" +
+                "ers";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -975,7 +986,7 @@ SELECT Id, Phonenum, Subscriber FROM PhoneNumbers WHERE (Id = @Id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_Id, string Original_Phonenum, string Original_Subscriber) {
+        public virtual int Delete(int Original_Id, string Original_Phonenum, string Original_Subscriber, global::System.Nullable<int> Original_Contract_value, global::System.Nullable<global::System.DateTime> Original_Contract_date) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_Id));
             if ((Original_Phonenum == null)) {
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(1));
@@ -992,6 +1003,22 @@ SELECT Id, Phonenum, Subscriber FROM PhoneNumbers WHERE (Id = @Id)";
             else {
                 this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
                 this.Adapter.DeleteCommand.Parameters[4].Value = ((string)(Original_Subscriber));
+            }
+            if ((Original_Contract_value.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[6].Value = ((int)(Original_Contract_value.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            if ((Original_Contract_date.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[8].Value = ((System.DateTime)(Original_Contract_date.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -1013,7 +1040,7 @@ SELECT Id, Phonenum, Subscriber FROM PhoneNumbers WHERE (Id = @Id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string Phonenum, string Subscriber) {
+        public virtual int Insert(string Phonenum, string Subscriber, global::System.Nullable<int> Contract_value, global::System.Nullable<global::System.DateTime> Contract_date) {
             if ((Phonenum == null)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -1025,6 +1052,18 @@ SELECT Id, Phonenum, Subscriber FROM PhoneNumbers WHERE (Id = @Id)";
             }
             else {
                 this.Adapter.InsertCommand.Parameters[1].Value = ((string)(Subscriber));
+            }
+            if ((Contract_value.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[2].Value = ((int)(Contract_value.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            if ((Contract_date.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[3].Value = ((System.DateTime)(Contract_date.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -1046,7 +1085,7 @@ SELECT Id, Phonenum, Subscriber FROM PhoneNumbers WHERE (Id = @Id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Phonenum, string Subscriber, int Original_Id, string Original_Phonenum, string Original_Subscriber, int Id) {
+        public virtual int Update(string Phonenum, string Subscriber, global::System.Nullable<int> Contract_value, global::System.Nullable<global::System.DateTime> Contract_date, int Original_Id, string Original_Phonenum, string Original_Subscriber, global::System.Nullable<int> Original_Contract_value, global::System.Nullable<global::System.DateTime> Original_Contract_date, int Id) {
             if ((Phonenum == null)) {
                 this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -1059,24 +1098,52 @@ SELECT Id, Phonenum, Subscriber FROM PhoneNumbers WHERE (Id = @Id)";
             else {
                 this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(Subscriber));
             }
-            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(Original_Id));
-            if ((Original_Phonenum == null)) {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
+            if ((Contract_value.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(Contract_value.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(Original_Phonenum));
+                this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
-            if ((Original_Subscriber == null)) {
+            if ((Contract_date.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((System.DateTime)(Contract_date.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_Id));
+            if ((Original_Phonenum == null)) {
                 this.Adapter.UpdateCommand.Parameters[5].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[5].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(Original_Subscriber));
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(Original_Phonenum));
             }
-            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Id));
+            if ((Original_Subscriber == null)) {
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Original_Subscriber));
+            }
+            if ((Original_Contract_value.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(Original_Contract_value.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
+            }
+            if ((Original_Contract_date.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((System.DateTime)(Original_Contract_date.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(Id));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -1097,8 +1164,8 @@ SELECT Id, Phonenum, Subscriber FROM PhoneNumbers WHERE (Id = @Id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Phonenum, string Subscriber, int Original_Id, string Original_Phonenum, string Original_Subscriber) {
-            return this.Update(Phonenum, Subscriber, Original_Id, Original_Phonenum, Original_Subscriber, Original_Id);
+        public virtual int Update(string Phonenum, string Subscriber, global::System.Nullable<int> Contract_value, global::System.Nullable<global::System.DateTime> Contract_date, int Original_Id, string Original_Phonenum, string Original_Subscriber, global::System.Nullable<int> Original_Contract_value, global::System.Nullable<global::System.DateTime> Original_Contract_date) {
+            return this.Update(Phonenum, Subscriber, Contract_value, Contract_date, Original_Id, Original_Phonenum, Original_Subscriber, Original_Contract_value, Original_Contract_date, Original_Id);
         }
     }
 }

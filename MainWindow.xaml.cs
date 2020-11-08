@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace Goron_Melisa_Lab5
 {
     /// <summary>
@@ -138,8 +139,9 @@ MessageBoxImage.Warning) == MessageBoxResult.Yes)
             BindingOperations.ClearBinding(txtContractDate, TextBox.TextProperty);
             txtPhoneNumber.Text = tempPhonenum;
             txtSubscriber.Text = tempSubscriber;
-            txtContractValue.Text = "";
-            txtContractDate.Text = "";
+            txtContractValue.Text = tempContractDate;
+            txtContractDate.Text = tempContractDate;
+            
             Keyboard.Focus(txtPhoneNumber);
         }
 
@@ -164,8 +166,8 @@ MessageBoxImage.Warning) == MessageBoxResult.Yes)
             BindingOperations.ClearBinding(txtContractDate, TextBox.TextProperty);
             txtPhoneNumber.Text = tempPhonenum;
             txtSubscriber.Text = tempSubscriber;
-            txtContractValue.Text = tempPhonenum;
-            txtContractDate.Text = tempSubscriber;
+            txtContractValue.Text = tempContractValue;
+            txtContractDate.Text = tempContractDate;
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
